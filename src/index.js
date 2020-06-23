@@ -11,7 +11,26 @@ const start = async () => {
 
   const server = Hapi.server({
     host: 'localhost',
-    port: 4000
+    port: 4000,
+    routes: {
+      cors: {
+        origin: ['http://localhost:4200'],
+        headers: [
+          'Access-Control-Allow-Headers',
+          'Access-Control-Allow-Origin',
+          'Accept',
+          'Authorization',
+          'Content-Type',
+          'If-None-Match',
+          'Accept-language'
+        ],
+        additionalHeaders: [
+          'Access-Control-Allow-Headers: Origin, Content-Type, x-ms-request-id , Authorization',
+          'Auth'
+        ],
+        credentials: true
+      }
+    }
   });
 
   // Asigna un prefijo a todas las rutas
